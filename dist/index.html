@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Todo App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/css/styles.css" rel="stylesheet"> 
+ </head>
+  <body>
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">My projects </div>
+      <div class="list-group list-group-flush" id="projects-list">
+        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<button class="btn" id="menu-toggle">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				
+				<div class="container col-10 justify-content-center">
+					<h2>Todo App</h2>
+				</div>
+      </nav>
+
+      <!-- Main Content -->
+			<div class="container mt-3" id="tasks-container">
+				<div class="mb-4 text-center">	
+					<a class="btn btn-lg btn-light">+</a> 
+				</div>		
+				<div class="p-4 border rounded col-md-6 offset-md-3"><h4>New task</h4></div>
+			</div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+		
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>	
+	<script src="main.js" defer></script>
+  </body>
+</html>
