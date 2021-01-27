@@ -6,6 +6,7 @@
     <title>Todo App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href="assets/css/styles.css" rel="stylesheet"> 
  </head>
@@ -15,9 +16,11 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">My projects </div>
-      <div class="list-group list-group-flush" id="projects-list">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-      </div>
+      <ul class="list-group list-group-flush" id="projects-list">
+        <li class="list-group-item list-group-item-action bg-light">
+          <a href="https://wikipedia.com">First project</a> <a href="https://google.com" class="pl-5"><i class="fa fa-trash" aria-hidden="true" ></i></a>
+        </li>
+      </ul>
     </div>
     <!-- /#sidebar-wrapper -->
 
@@ -35,11 +38,63 @@
       </nav>
 
       <!-- Main Content -->
-			<div class="container mt-3" id="tasks-container">
+			<div class="container mt-3">
 				<div class="mb-4 text-center">	
-					<a class="btn btn-lg btn-light">+</a> 
-				</div>		
-				<div class="p-4 border rounded col-md-6 offset-md-3"><h4>New task</h4></div>
+					<a class="btn btn-lg btn-light" id="addTodoBtn">+</a> 
+        </div>		
+        <div class="col-lg-8 offset-lg-2"id="tasks-container">
+          <!-- Here needed ID E.G. container-25 -->
+          <div class="border col-10 offset-1" id="container-25" style="border-radius: .25rem; margin-top: 25px">
+            <div style="margin-top: -17px; padding: 0 9px !important; font-size: small; position: absolute;" class="col-12">
+              <div class="d-flex text-muted">
+                  Due date 27/01/21
+              </div>
+              <div class="text-right">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="row todo-title" style="margin-top: 20px; margin-bottom: 10px; margin-left: 12px;">
+              <div class="col-9">
+                <div class="pl-2">
+                  <!-- ID needed as well E.G. title-25 -->
+                  <h4 contenteditable="true" id="title-25" spellcheck="false">New task</h4>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="flip-switch flip-switch-icon">
+                  <!-- ID Needed! E.G. 25, toggleDoneButton("25")-->
+                  <input type="checkbox" id="done-button-25" data-content="0" onclick="toggleDoneButton('25')">
+                  <label for="done-button-25"></label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <!-- This i element the button needs a specific todo ID. E.G. toggle-info-25 -->
+              <i class="fa fa-caret-down text-muted" id="toggle-info-25" 
+                aria-hidden="true" onclick="toggleDescription(25)"
+                style="text-align: center; width: 100%; background-color: #EAF1EB; border-bottom-left-radius: .25rem; border-bottom-right-radius: .25rem;"></i>
+            </div>
+          </div>
+
+          <!-- This div element needs a specific todo ID plus the word "description". E.G. description-25-->
+          <div class="border col-10 offset-1 mb-4" id="description-25" style="display: none; border-bottom-left-radius: .25rem; border-bottom-right-radius: .25rem;">
+            <div style="padding: 20px" spellcheck="false" contenteditable="true">Here goes your description.</div>
+            <div class="d-inline-flex priority col-12 col-md-7" style="padding-left: 20px !important">Priority <p class="text-muted">(1 is the most important)</p></div>
+            <div class="d-inline-flex switch-field offset-3 offset-md-1">
+              <!-- Don't forget to assign todo's ID to name. E.G. priority-25 -->
+              <input type="radio" id="radio-one" name="priority-25" value="1" checked/>
+              <label for="radio-one">1</label>
+              <input type="radio" id="radio-two" name="priority-25" value="2" />
+              <label for="radio-two">2</label>
+              <input type="radio" id="radio-six" name="priority-25" value="3" />
+              <label for="radio-six">3</label>
+            </div>
+            <div class="msg" style="padding: 20px">
+              <label for="notes">Notes</label>
+              <textarea id="notes" class="msg__textarea"></textarea>
+            </div>
+          </div>
+        </div>
 			</div>
     </div>
     <!-- /#page-content-wrapper -->
@@ -50,6 +105,43 @@
 		
 	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>	
-	<script src="main.js" defer></script>
+  <script src="main.js" defer></script>
+  <script>
+    $('#menu-toggle').on('click', (e) => {
+      e.preventDefault();
+      $('#wrapper').toggleClass('toggled');
+    });
+
+    function toggleDescription(id) {
+      let todoContainer = $(`#container-${id}`); 
+      let toggleButton = $(`#toggle-info-${id}`);
+      let todoContent = $(`#description-${id}`);
+
+      toggleButton.toggleClass('fa-caret-up fa-caret-down');
+      if( toggleButton.hasClass('fa-caret-up')) {
+          
+          todoContainer.css("border-radius",".25rem .25rem 0px 0px");
+          toggleButton.css("border-bottom-left-radius","0px");
+          toggleButton.css("border-bottom-right-radius","0px");
+          todoContent.slideDown('fast');
+          
+      } else {
+        todoContainer.css("border-radius",".25rem");
+        toggleButton.css("border-bottom-left-radius",".25rem");
+        toggleButton.css("border-bottom-right-radius",".25rem");
+        todoContent.slideUp('fast');
+      }
+
+    }
+
+    function toggleDoneButton(id) {
+      let btn = $(`#done-button-${id}`);
+      if(btn.attr("data-content") == "1"){
+        btn.attr("data-content", "0");
+      } else {
+        btn.attr("data-content", "1");
+      }
+    }
+  </script>
   </body>
 </html>

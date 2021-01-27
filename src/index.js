@@ -1,5 +1,6 @@
-import { project } from './modules/project';
+import { project, addProjectToSidebar } from './modules/project';
 import { todo, displayTodo } from './modules/todo';
+
 
 (function init() {
   const defaultProject = project();
@@ -8,9 +9,16 @@ import { todo, displayTodo } from './modules/todo';
   defaultProject.addTodo(defaultTodo);
 
   displayTodo(defaultTodo);
+  addProjectToSidebar(defaultProject);
+
+  console.dir(defaultProject);
 }());
 
-$('#menu-toggle').on('click', (e) => {
-  e.preventDefault();
-  $('#wrapper').toggleClass('toggled');
+
+
+$("#addTodoBtn").on("click", () => {
+  let newTodo = todo();
+  displayTodo(newTodo);
 });
+
+
