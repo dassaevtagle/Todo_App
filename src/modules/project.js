@@ -15,9 +15,7 @@ const project = (name = "New project") => {
 	       	_dueDate = date
 	   },
 	   addTodo(todo){
-			 let newUuid = uuid();
-			 todo.uuid = newUuid;
-			 _todos[newUuid] = todo;
+			 _todos[todo.uuid] = todo;
 		 },
 		 removeTodo(uuid){
 			delete _todos[uuid];

@@ -54,6 +54,40 @@ html {
 		}
  }
 
+ .todo_main_container{
+	border-radius: .25rem;
+	margin-top: 30px;
+ }
+
+ .trash_container{
+	 padding: 0 9px !important;
+	 font-size: small; position:absolute;
+ }
+ 
+ .todo_title{
+	 margin-top: 26px;
+	 margin-bottom: 13px;
+	 margin-left: 12px;
+ }
+
+ .todo_caret{
+	 text-align: center;
+	 width: 100%;
+	 background-color: #EAF1EB;
+	 border-bottom-left-radius: .25rem;
+	 border-bottom-right-radius: .25rem;
+ }
+ 
+ .todo_description{
+	 display: none;
+	 border-bottom-left-radius: .25rem;
+	 border-bottom-right-radius: .25rem;
+ }
+
+ .todo_priority{
+	padding-left: 20px !important
+ }
+
 /*!
  * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template/simple-sidebar)
  * Copyright 2013-2020 Start Bootstrap
@@ -343,6 +377,7 @@ html {
 	z-index: 0;
 	max-width: 600px;
 	width: 100%;
+	padding: 20px;
 }
 
 .msg__textarea {
