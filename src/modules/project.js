@@ -1,10 +1,17 @@
+import { todo, displayTodo } from './todo';
 import { v4 as uuid  } from 'uuid';
+
 
 const project = (name = "New project") => {
 	let _dueDate
-	let _todos = {}
+	let _todos = {};
+	let defaultTodo = todo();
+
+	_todos[defaultTodo.uuid] = defaultTodo;
+
 	const proto = {
-	   name,
+		 name,
+		 uuid: uuid(),
 	   get dueDate() {
 	   	if(_dueDate){
 				return _dueDate
@@ -22,9 +29,9 @@ const project = (name = "New project") => {
 		 },
 	   get todos(){
 	     if(isEmpty(_todos)){
-	     	return _todos
+	     	return -1
 	     }
-	     return -1;
+	     return _todos;
 	   }
 	}
 
@@ -43,9 +50,17 @@ const addProjectToSidebar = project => {
 	let element = document.createElement("a");
 
 	element.classList.add("list-group-item", "list-group-item-action", "bg-light");
+	element.id = `project-${project.uuid}`;
 	element.innerHTML = project.name;
 
 	$("#projects-list").append(element);
 }
 
-export { project, addProjectToSidebar }
+const displayProject = project => {
+	/* $("#tasks-container").empty() */
+	for(let [key, value] of Object.entries(project.todos)){
+		displayTodo(value);
+	}
+}
+
+export { project, addProjectToSidebar, displayProject }

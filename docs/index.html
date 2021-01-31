@@ -17,10 +17,12 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">My projects </div>
       <ul class="list-group list-group-flush" id="projects-list">
-        <a class="list-group-item list-group-item-action bg-light">First project</a>
+        <!-- ID needed -->
+        <a class="list-group-item list-group-item-action bg-light" contenteditable="true" 
+           spellcheck="false" id="project-25">First project</a>
       </ul>
       <div class="text-center">
-        <button class="btn border rounded mt-2">+</button>
+        <button class="btn border rounded mt-2" id="add-project-button">+</button>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -39,63 +41,75 @@
       </nav>
 
       <!-- Main Content -->
-			<div class="container mt-3">
-				<div class="mb-4 text-center">	
+			<div class="container mt-3 mb-3">
+				<div class="mb-1 text-center">	
 					<a class="btn btn-lg btn-light" id="addTodoBtn">+</a> 
         </div>		
         <div class="col-lg-8 offset-lg-2"id="tasks-container">
-          <!-- Here needed ID E.G. container-25 -->
-          <div class="border col-10 offset-1 todo_main_container" id="container-25" style="border-radius: .25rem; margin-top: 30px">
-            <div class="trash_container col-12" style="padding: 0 9px !important; font-size: small; position: absolute;">
-              <div class="text-right">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-              </div>
-            </div>
-            <div class="row todo_title" style="margin-top: 26px; margin-bottom: 13px; margin-left: 12px;">
-              <div class="col-9">
-                <div class="pl-2">
-                  <!-- ID needed as well E.G. title-25 -->
-                  <h4 contenteditable="true" id="title-25" spellcheck="false">New task</h4>
+          <!-- ID needed E.G.dragula-25 -->
+          <div class="dragula-25">
+            <!-- Here needed ID E.G. container-25 -->
+            <div class="border col-10 offset-1 todo_main_container" id="container-25" style="border-radius: .25rem; margin-top: 30px">
+              <div class="trash_container col-12" style="padding: 0 9px !important; font-size: small; position: absolute;">
+                <div class="text-right">
+                  <i class="fa fa-trash text-muted todo_trash" aria-hidden="true" onclick="removeTodo('25')"></i>
                 </div>
               </div>
-              <div class="col-2">
-                <div class="flip-switch flip-switch-icon">
-                  <!-- ID Needed! E.G. 25, toggleDoneButton("25")-->
-                  <input type="checkbox" id="done-button-25" data-content="0" onclick="toggleDoneButton('25')">
-                  <label for="done-button-25"></label>
+              <div class="row todo_title_row" style="margin-top: 26px; margin-bottom: 13px; margin-left: 12px;">
+                <div class="col-9">
+                  <div class="pl-2">
+                    <!-- ID needed as well E.G. title-25 -->
+                    <h4 class="todo_title" onclick="document.execCommand('selectAll',false,null)" contenteditable="true" id="title-25" spellcheck="false">New task</h4>
+                  </div>
+                </div>
+                <div class="col-2">
+                  <div class="flip-switch flip-switch-icon">
+                    <!-- ID Needed! E.G. 25, toggleDoneButton("25")-->
+                    <input type="checkbox" id="done-button-25" data-content="0" onclick="toggleDoneButton('25')">
+                    <label for="done-button-25"></label>
+                  </div>
                 </div>
               </div>
+              <div class="d-flex justify-content-center">
+                <!-- This i element the button needs a specific todo ID. E.G. toggle-info-25 -->
+                <i class="todo_caret fa fa-caret-down text-muted" id="toggle-info-25" 
+                  aria-hidden="true" onclick="toggleDescription('25')"
+                  style="text-align: center; width: 100%; background-color: #EAF1EB; border-bottom-left-radius: .25rem; border-bottom-right-radius: .25rem;"></i>
+              </div>
             </div>
-            <div class="d-flex justify-content-center">
-              <!-- This i element the button needs a specific todo ID. E.G. toggle-info-25 -->
-              <i class="todo_caret fa fa-caret-down text-muted" id="toggle-info-25" 
-                aria-hidden="true" onclick="toggleDescription('25')"
-                style="text-align: center; width: 100%; background-color: #EAF1EB; border-bottom-left-radius: .25rem; border-bottom-right-radius: .25rem;"></i>
-            </div>
-          </div>
 
-          <!-- This div element needs a specific todo ID plus the word "description". E.G. description-25-->
-          <div class="todo_description border col-10 offset-1 mb-4" id="description-container-25" style="display: none; border-bottom-left-radius: .25rem; border-bottom-right-radius: .25rem;">
-            <!-- You need ID E.G. description-25 -->
-            <div style="padding: 20px" spellcheck="false" contenteditable="true" id="description-25">Here goes your description.</div>
-            <div class="d-inline-flex todo_priority col-12 col-md-7" style="padding-left: 20px !important;">Priority <p class="text-muted">(1 is the most important)</p></div>
-            <div class="d-inline-flex switch-field offset-3 offset-md-1">
-              <!-- Don't forget to assign todo's ID to name and id attribute. E.G. priority-25, radio-one-25 -->
-              <input type="radio" id="radio-one-25" name="priority-25" value="1" checked/>
-              <label for="radio-one-25">1</label>
-              <input type="radio" id="radio-two-25" name="priority-25" value="2" />
-              <label for="radio-two-25">2</label>
-              <input type="radio" id="radio-three-25" name="priority-25" value="3" />
-              <label for="radio-three-25">3</label>
-            </div>
-            <div class="msg" style="padding: 20px">
-              <!-- ID needed E.G. notes-25 -->
-              <label for="notes-25">Notes</label>
-              <textarea id="notes-25" class="msg__textarea"></textarea>
-            </div>
+            <!-- This div element needs a specific todo ID plus the word "description". E.G. description-25-->
+            <div class="todo_description_row border col-10 offset-1 mb-4" id="description-container-25" style="display: none; border-bottom-left-radius: .25rem; border-bottom-right-radius: .25rem;">
+              <div class="row p-3">
+                <div class="col-md-6 col-12">
+                  <!-- You need ID E.G. description-25 -->
+                  <div class="todo_description" spellcheck="false" contenteditable="true" id="description-25">Here goes your description.</div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="col-12">
+                    <div class="todo_priority" style="padding-left: 20px !important;">Priority &nbsp; <p class="text-muted">(1 is the most important)</p></div>
+                  </div>
+                  <div class="col-12">
+                    <div class="switch-field offset-3 offset-md-1">
+                      <!-- Don't forget to assign todo's ID to name and id attribute. E.G. priority-25, radio-one-25 -->
+                      <input type="radio" id="radio-one-25" name="priority-25" value="1" checked/>
+                      <label for="radio-one-25">1</label>
+                      <input type="radio" id="radio-two-25" name="priority-25" value="2" />
+                      <label for="radio-two-25">2</label>
+                      <input type="radio" id="radio-three-25" name="priority-25" value="3" />
+                      <label for="radio-three-25">3</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="msg" style="padding: 20px">
+                <!-- ID needed E.G. notes-25 -->
+                <label for="notes-25" style="margin-bottom: 0;">Notes</label>
+                <textarea id="notes-25" class="msg__textarea"></textarea>
+              </div>
+            </div>  
           </div>
-
-          
         </div>
 			</div>
     </div>
@@ -118,22 +132,37 @@
       let todoContainer = $(`#container-${id}`); 
       let toggleButton = $(`#toggle-info-${id}`);
       let todoContent = $(`#description-container-${id}`);
+      let allDescriptions = $(".todo_description_row");
+      let allCarets = $(".todo_caret");
+      
 
-      toggleButton.toggleClass('fa-caret-up fa-caret-down');
       if( toggleButton.hasClass('fa-caret-up')) {
-          
+          hideDescriptions();
+
+          toggleButton.removeClass('fa-caret-up');
+          toggleButton.addClass("fa-caret-down")
           todoContainer.css("border-radius",".25rem .25rem 0px 0px");
           toggleButton.css("border-bottom-left-radius","0px");
           toggleButton.css("border-bottom-right-radius","0px");
-          todoContent.slideDown('fast');
           
       } else {
+        hideDescriptions();
+        toggleButton.removeClass('fa-caret-down');
+        toggleButton.addClass("fa-caret-up")
         todoContainer.css("border-radius",".25rem");
         toggleButton.css("border-bottom-left-radius",".25rem");
         toggleButton.css("border-bottom-right-radius",".25rem");
-        todoContent.slideUp('fast');
+        todoContent.slideDown('fast');
       }
 
+      function hideDescriptions(){
+        allCarets.removeClass("fa-caret-up");
+        allCarets.addClass("fa-caret-down");
+        allDescriptions.css("border-radius",".25rem");
+        allDescriptions.css("border-bottom-left-radius",".25rem");
+        allDescriptions.css("border-bottom-right-radius",".25rem");
+        allDescriptions.hide();
+      }
     }
 
     function toggleDoneButton(id) {
@@ -143,6 +172,11 @@
       } else {
         btn.attr("data-content", "1");
       }
+    }
+
+    function removeTodo(id){
+      let todo = $(`.dragula-${id}`);
+      todo.remove();
     }
   </script>
   </body>

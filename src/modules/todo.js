@@ -6,8 +6,7 @@ const todo = (name = "New task") => {
 		name,
 		uuid: uuid(),
 		done: false,
-		dueDate:undefined,
-		description: "Description",
+		description: "Write your description here.",
 		priority: 3,
 		notes: ""
 	}
@@ -16,6 +15,9 @@ const todo = (name = "New task") => {
 }
 
 const displayTodo = (todo) => {
+	let dragulaCont = document.createElement("div");
+			dragulaCont.classList.add(`dragula-${todo.uuid}`);
+
 	let mainContainer = document.createElement("div");
 			mainContainer.classList.add("border", "col-10", "offset-1", "todo_main_container");
 			mainContainer.id = `container-${todo.uuid}`;
@@ -23,14 +25,14 @@ const displayTodo = (todo) => {
 	let trashContainer= document.createElement("div");
 			trashContainer.classList.add("trash_container", "col-12");
 			trashContainer.innerHTML = `<div class="text-right">
-																		<i class="fa fa-trash" aria-hidden="true"></i>
+																		<i class="fa fa-trash text-muted todo_trash" aria-hidden="true" onclick=removeTodo('${todo.uuid}')></i>
 																	</div>`;
 																																					
 	let todoTitle = document.createElement("div");
-			todoTitle.classList.add("row","todo_title");
+			todoTitle.classList.add("row","todo_title_row");
 			todoTitle.innerHTML = `<div class="col-9">
 															<div class="pl-2">
-																<h4 contenteditable="true" id="title-${todo.uuid}" spellcheck="false">New task</h4>
+																<h4 class="todo_title" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" id="title-${todo.uuid}" spellcheck="false">New task</h4>
 															</div>
 														</div>
 														<div class="col-2">
@@ -47,45 +49,46 @@ const displayTodo = (todo) => {
 												</i>`;
 
 	let todoDescriptionContainer = document.createElement("div");
-			todoDescriptionContainer.classList.add("todo_description", "border", "col-10", "offset-1", "mb-4");
+			todoDescriptionContainer.classList.add("todo_description_row", "border", "col-10", "offset-1", "mb-4");
 			todoDescriptionContainer.id = `description-container-${todo.uuid}`;
 
-	let	description = document.createElement("div");
-			description.id = `description-${todo.uuid}`;
-			description.setAttribute("contenteditable", "truwe");
-			description.setAttribute("spellcheck", "false");
-			description.style.padding = "20px";
-			description.innerHTML = "Write a description here.";
-
-	let priority = document.createElement("div");
-			priority.classList.add("d-inline-flex", "todo_priority", "col-12", "col-md-7");
-			priority.innerHTML = `Priority <p class="text-muted">(1 is the most important)</p></div>`;
-	
-	let priorityRadio = document.createElement("div");
-			priorityRadio.classList.add("d-inline-flex", "switch-field", "offset-3", "offset-md-1");
-			priorityRadio.innerHTML = `<input type="radio" id="radio-one-${todo.uuid}" name="priority-${todo.uuid}" value="1" checked/>
-																<label for="radio-one-${todo.uuid}">1</label>
-																<input type="radio" id="radio-two-${todo.uuid}" name="priority-${todo.uuid}" value="2" />
-																<label for="radio-two-${todo.uuid}">2</label>
-																<input type="radio" id="radio-three-${todo.uuid}" name="priority-${todo.uuid}" value="3" />
-																<label for="radio-three-${todo.uuid}">3</label>`;
+	let	descriptionRow = document.createElement("div");
+			descriptionRow.classList.add("row", "p-3");
+			descriptionRow.innerHTML = `<div class="col-md-6 col-12">
+																		<div class="todo_description" spellcheck="false" contenteditable="true" id="description-${todo.uuid}">Here goes your description.</div>
+																	</div>
+																	<div class="col-md-6 col-12">
+																		<div class="col-12">
+																			<div class="todo_priority">Priority &nbsp; <p class="text-muted">(1 is the most important)</p></div>
+																		</div>
+																		<div class="col-12">
+																			<div class="switch-field offset-3 offset-md-1">
+																				<input type="radio" id="radio-one-${todo.uuid}" name="priority-${todo.uuid}" value="1" checked/>
+																				<label for="radio-one-${todo.uuid}">1</label>
+																				<input type="radio" id="radio-two-${todo.uuid}" name="priority-${todo.uuid}" value="2" />
+																				<label for="radio-two-${todo.uuid}">2</label>
+																				<input type="radio" id="radio-three-${todo.uuid}" name="priority-${todo.uuid}" value="3" />
+																				<label for="radio-three-${todo.uuid}">3</label>
+																			</div>
+																		</div>
+																	</div>`;  
 
 	let notes = document.createElement("div");
 			notes.classList.add("msg");
-			notes.innerHTML = `<label for="notes-${todo.uuid}">Notes</label>
+			notes.innerHTML = `<label for="notes-${todo.uuid} style="margin-bottom: 0;">Notes</label>
 													<textarea id="notes-${todo.uuid}" class="msg__textarea"></textarea>`;
 
   mainContainer.appendChild(trashContainer);
 	mainContainer.appendChild(todoTitle);
 	mainContainer.appendChild(caret);
 
-	todoDescriptionContainer.appendChild(description);
-	todoDescriptionContainer.appendChild(priority);
-	todoDescriptionContainer.appendChild(priorityRadio);
+	todoDescriptionContainer.appendChild(descriptionRow);
 	todoDescriptionContainer.appendChild(notes);
 
-	$("#tasks-container").prepend(todoDescriptionContainer);
-	$("#tasks-container").prepend(mainContainer);
+	dragulaCont.appendChild(mainContainer);
+	dragulaCont.appendChild(todoDescriptionContainer);
+
+	$("#tasks-container").prepend(dragulaCont);
 }
 
 export { todo, displayTodo }
