@@ -48,6 +48,12 @@ let currentProject = JSON.parse(localStorage.getItem("currentProject"));
                     <div class="col-lg-8 offset-lg-2"id="tasks-container">
                     </div>
                   </div>
+                  <div id="scroll-top-button">
+                      <a class="btn btn-lg btn-light"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                  </div>
+                  <div id="scroll-down-button">
+                      <a class="btn btn-lg btn-light"><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                  </div>
                   <div class="bottom-button">	
                     <a class="btn btn-lg" id="addTodoBtn">+</a> 
                   </div>		
@@ -162,6 +168,35 @@ $('#add-project-button').on('click', () => {
   displayProject(newPr.uuid, projects, true);
   localStorage.setItem('projects', JSON.stringify(window.projects));
 });
+
+$(`#scroll-top-button`).on("mousedown",() => {
+  (function smoothSrcroll() {
+      $('html, body').stop().animate({
+          scrollTop: Math.max($('html').scrollTop(), $('body').scrollTop()) - 350
+      }, 1000, 'linear', function() {
+          window.timeout = setTimeout(smoothSrcroll(), 0);
+      });
+  })();
+}).on('mouseup', function() {
+  $('html, body').stop();
+  clearTimeout(window.timeout);
+});
+
+
+$(`#scroll-down-button`).on("mousedown",() => {
+  (function smoothSrcroll() {
+      $('html, body').stop().animate({
+          scrollTop: Math.max($('html').scrollTop(), $('body').scrollTop()) + 350
+      }, 1000, 'linear', function() {
+          window.timeout = setTimeout(smoothSrcroll(), 0);
+      });
+  })();
+}).on('mouseup', function() {
+  $('html, body').stop();
+  clearTimeout(window.timeout);
+});
+
+
 
 window.displayProject = displayProject;
 window.projects = projects;

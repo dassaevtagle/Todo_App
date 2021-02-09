@@ -67,6 +67,12 @@ body{
 		height: 84.5vh;
 		width: auto;
 	}
+	#scroll-down-button{
+		display: none;
+	}
+	#scroll-top-button{
+		display: none;
+	} 
 }
 
  @media (max-width: 530px) { 
@@ -109,7 +115,8 @@ body{
  }
 
  .todo_title:hover, .todo_description:hover,
- .msg__textarea:hover {
+ .msg__textarea:hover,
+ #scroll-down-button:hover, #scroll-top-button:hover {
 	transform: scale(1.04);
  }
 
@@ -207,6 +214,18 @@ body{
  #add-project-button{
 	 background-color: #0F93FF;
 	 color: white;
+ }
+
+ #scroll-top-button{
+	position: fixed;
+	bottom: 169px;
+	right: 10px;
+ }
+
+#scroll-down-button{
+	position: fixed;
+	bottom: 106px;
+	right: 10px;
  }
 
  /* Scrollbar CSS */
