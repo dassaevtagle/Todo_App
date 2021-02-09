@@ -128,6 +128,33 @@ let currentProject = JSON.parse(localStorage.getItem("currentProject"));
       localStorage.setItem('projects', JSON.stringify(window.projects));
     }
   });
+  drake.on('drag',function(el,source){
+    //you need to:
+    //add a parent node as a mask of the dragula.container
+    //and set its css with overflow:auto, max-height:somevalue
+    mask = $(source).parent($(`#tasks-container`)); 
+    var h = mask.height("100%");
+    mask.bind('touchend',function(e){
+      mask.unbind('touchmove');
+    });
+    mask.bind('mousemove touchmove',function(e) { 
+      var offset=mask.position().top;
+      if(DRRR.isMobile){
+        e.clientY = e.originalEvent.targetTouches[0].clientY;
+      }
+      var mousePosition = e.clientY - offset;
+      //alert(mousePosition);
+      var topRegion = 0.65 * h;
+      var bottomRegion = 0.35 * h;
+      if((DRRR.isMobile || e.which == 1) && (mousePosition < topRegion || mousePosition > bottomRegion)){    // e.which = 1 => click down !                                                                                   
+        var distance = mousePosition - h / 2;
+        distance = distance * 0.1; // <- velocity
+        mask.scrollTop( distance + mask.scrollTop()) ;                    
+      }else{
+        mask.unbind('mousemove touchmove');
+      }
+    });
+  });
 
 }());
 
