@@ -16,6 +16,10 @@ body{
 	background-attachment: fixed;
 	background-size: cover;
 }
+[contenteditable]{
+   -webkit-user-select: text;
+    user-select: text;
+}
 
 .col, .col-1, .col-10, 
 .col-11, .col-12, .col-2,
