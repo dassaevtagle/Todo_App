@@ -16,7 +16,7 @@ body{
 	background-attachment: fixed;
 	background-size: cover;
 }
-[contenteditable]{
+.34{
    -webkit-user-select: auto;
     user-select: auto;
 }
