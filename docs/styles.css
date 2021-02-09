@@ -16,11 +16,6 @@ body{
 	background-attachment: fixed;
 	background-size: cover;
 }
-.34{
-   -webkit-user-select: auto;
-    user-select: auto;
-}
-
 .col, .col-1, .col-10, 
 .col-11, .col-12, .col-2,
 .col-3, .col-4, .col-5, 
