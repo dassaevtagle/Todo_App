@@ -24,11 +24,11 @@ const displayTodo = (todo) => {
 	let row = document.createElement("div");
 			row.classList.add("row", "dragula-mover-row");
 	let dragulaMover = document.createElement("div");
-			dragulaMover.classList.add("col-2", "dragula-handler");
+			dragulaMover.classList.add("col-4", "dragula-handler");
 			dragulaMover.innerHTML = `<i class="fa fa-arrows" aria-hidden="true"></i>`;
 
 	let trashContainer= document.createElement("div");
-			trashContainer.classList.add("trash_container", "col-6", "offset-4");
+			trashContainer.classList.add("trash_container", "col-6", "offset-2");
 			trashContainer.innerHTML = `<div class="text-right">
 																		<i class="fa fa-trash todo_trash" aria-hidden="true" onclick="removeTodo('${todo.uuid}')"></i>
 																	</div>`;
