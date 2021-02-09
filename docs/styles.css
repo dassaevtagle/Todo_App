@@ -5,10 +5,18 @@
   font-family: inherit;
   -webkit-font-smoothing: antialiased;
   -webkit-user-select: none;
+	user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 html {
   font-family: 'Lato', sans-serif;
+}
+
+body{
+	background-color: #aaaaaa;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23aaaaaa'/%3E%3Cstop offset='1' stop-color='%230fcfff'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23abffce' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23abffce' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2'%3E%3Cstop offset='0' stop-color='%23abffce' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23abffce' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+	background-attachment: fixed;
+	background-size: cover;
 }
 
 .col, .col-1, .col-10, 
@@ -46,27 +54,39 @@ html {
  }
  @media (min-width: 992px) { 
 		#tasks-container{
-			overflow: scroll;
+			overflow: auto;
 			overflow-x: hidden;
 			-ms-overflow-x: hidden;
-			height: 77vh;
+			height: 84.5vh;
 			width: auto;
 		}
  }
 
+ .list-icon{
+	 background-color: #719ECE;
+	 color: white;
+ }
+
+ .project_title{
+	display: inline-flex;
+ }
+
  .todo_title:hover, .todo_description:hover,
- .msg__textarea:hover {
+ .msg__textarea:hover, .icon:hover {
 	transform: scale(1.04);
  }
 
  .todo_main_container{
 	border-radius: .25rem;
 	margin-top: 20px;
+	background-color: white;
+	color: rgba(0, 0, 0, 0.7);
  }
 
  .trash_container{
 	 padding: 0 9px !important;
 	 font-size: small; position:absolute;
+		color:rgba(0, 0, 0, 0.5)
  }
  
  .todo_title_row{
@@ -76,21 +96,25 @@ html {
  }
 
  .todo_title{
-	display: inline-flex;
+	display: flex;
  }
 
  .todo_caret{
 	 text-align: center;
 	 width: 100%;
-	 background-color: #EAF1EB;
+	 background-color: #C3F3FF;
 	 border-bottom-left-radius: .25rem;
 	 border-bottom-right-radius: .25rem;
+	 color:rgba(0, 0, 0, 0.5);	
  }
  
  .todo_description_row{
 	 display: none;
 	 border-bottom-left-radius: .25rem;
 	 border-bottom-right-radius: .25rem;
+	color: rgba(0, 0, 0, 0.6);
+	background-color: white;
+
  }
 
  .todo_description{
@@ -100,14 +124,67 @@ html {
 
  .todo_priority{
 	display: flex;
-	padding-top: 20px;
+	padding: 10px 20px;
  }
 
  .todo_trash:hover{
-	box-shadow: 0 12px 16px 0 rgba(213, 44, 44, 0.24), 0 17px 50px 0 rgba(213, 44, 44, 0.24);
 	transform: scale(1.5);
  }
 
+ .muted_priority{
+	margin-bottom: 0;
+	padding-top: 5px;
+	font-size: x-small;
+ }
+
+ .bottom-button{
+	position: fixed;
+  bottom: 35px;
+  right: 35px;
+ }
+ 
+/* dragula bug */
+ .dragula-container{
+  touch-action: none !important;
+ }
+
+ #addTodoBtn{
+	 background-color: #0F57FF;
+	 color: white;
+	 border-radius: 50%;
+ }
+
+ .second-bg{
+	 background-color: white;
+	 border: none;
+	 color: rgba(0, 0, 0, 0.7);
+ }
+
+ #add-project-button{
+	 background-color: #0F93FF;
+	 color: white;
+ }
+
+ /* Scrollbar CSS */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #999; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #777; 
+}
 /*!
  * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template/simple-sidebar)
  * Copyright 2013-2020 Start Bootstrap
@@ -125,10 +202,11 @@ html {
   -moz-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
+	background-color: #718986;
 }
 
 #sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
+  padding: 0.875rem 2.25rem;
   font-size: 1.2rem;
 }
 
@@ -157,6 +235,10 @@ html {
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -15rem;
   }
+}
+
+.list-group-item{
+	background-color: aliceblue;
 }
 
 /* Css for switch done/undone */
