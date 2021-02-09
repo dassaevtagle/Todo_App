@@ -47,13 +47,15 @@ body{
 .col-xl-8, .col-xl-9, .col-xl-auto {
 	padding: 0 !important;
 }
+.gu-mirror {
+  pointer-events: none;
+}
 
 @media (max-width: 991px) { 
 	#tasks-container{
-		overflow: auto;
+		overflow: hidden;
 		height: auto;
 		width: auto;
-		max-height: 80vh;
 	}
 }
 
@@ -64,7 +66,6 @@ body{
 		-ms-overflow-x: hidden;
 		height: 84.5vh;
 		width: auto;
-		max-height: 90vh;
 	}
 }
 
