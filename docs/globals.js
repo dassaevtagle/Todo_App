@@ -91,13 +91,15 @@ function removeTodo(id){
 }
 
 function renameTodo(id){
-  let content = $(`#title-${id}`).html();
-  window.projects[window.currentProject].renameTodo(id, content);
+  let content = $(`#title-${id}`);
+  window.projects[window.currentProject].renameTodo(id, content.html());
+  content.select().remove();
 }
 
 function addTodoDesc(id){
-  let content = $(`#description-${id}`).html();
-  window.projects[window.currentProject].addTodoDesc(id, content);
+  let content = $(`#description-${id}`);
+  window.projects[window.currentProject].addTodoDesc(id, content.html());
+  content.select().remove();
 }
 
 function addTodoNotes(id){
