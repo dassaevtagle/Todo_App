@@ -84,6 +84,10 @@ body{
 	display: inline-flex;
  }
 
+ .todo_title_col{
+	 display: inline-flex;
+ }
+
  .dragula-mover-row{
 	padding: 0 22px;
 	margin-bottom: -16px;
@@ -115,6 +119,7 @@ body{
 	font-size: smaller;
 	color:rgba(0, 0, 0, 0.4);
 	padding-left: 6px !important;
+	padding-top: 4px !important;
 }	
 
  .trash_container{
