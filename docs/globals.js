@@ -15,6 +15,7 @@ function renameProject(id){
   window.projects[window.currentProject].name = projectTitle.html();
   window.projects[window.currentProject].updateLocalStorage();
 	$(".project-header").html(window.projects[window.currentProject].name);
+  window.getSelection().removeAllRanges();
 }
 
 function renameProjectInHeader(id){
@@ -93,13 +94,13 @@ function removeTodo(id){
 function renameTodo(id){
   let content = $(`#title-${id}`);
   window.projects[window.currentProject].renameTodo(id, content.html());
-  content.select().remove();
+  window.getSelection().removeAllRanges();
 }
 
 function addTodoDesc(id){
   let content = $(`#description-${id}`);
   window.projects[window.currentProject].addTodoDesc(id, content.html());
-  content.select().remove();
+  window.getSelection().removeAllRanges();
 }
 
 function addTodoNotes(id){
