@@ -20,25 +20,33 @@ const displayTodo = (todo) => {
 	let mainContainer = document.createElement("div");
 			mainContainer.classList.add("border", "col-10", "offset-1", "todo_main_container");
 			mainContainer.id = `container-${todo.uuid}`;
-			 
+	
+	let row = document.createElement("div");
+			row.classList.add("row", "dragula-mover-row");
+	let dragulaMover = document.createElement("div");
+			dragulaMover.classList.add("col-2", "dragula-handler");
+			dragulaMover.innerHTML = `<i class="fa fa-arrows" aria-hidden="true"></i>`;
+
 	let trashContainer= document.createElement("div");
-			trashContainer.classList.add("trash_container", "col-12");
+			trashContainer.classList.add("trash_container", "col-6", "offset-4");
 			trashContainer.innerHTML = `<div class="text-right">
 																		<i class="fa fa-trash todo_trash" aria-hidden="true" onclick="removeTodo('${todo.uuid}')"></i>
 																	</div>`;
+
+			
 																																					
 	let todoTitle = document.createElement("div");
 			todoTitle.classList.add("row","todo_title_row");
-			todoTitle.innerHTML = `<div class="col-md-9 col-8">
-															<div class="pl-2">
-																<h4 class="todo_title" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" 
-																		id="title-${todo.uuid}" onblur="renameTodo('${todo.uuid}')" spellcheck="false">${todo.name}</h4>
-															</div>
-														</div>
-														<div class="col-2">
+			todoTitle.innerHTML = `<div class="col-2">
 															<div class="flip-switch flip-switch-icon">
 																<input type="checkbox" id="done-button-${todo.uuid}" onclick="toggleDoneButton('${todo.uuid}')">
 																<label for="done-button-${todo.uuid}"></label>
+															</div>
+														</div>
+														<div class="col-md-9 col-8 todo_title_col">
+															<div class="pl-2">
+																<h4 class="todo_title" contenteditable="true" onclick="document.execCommand('selectAll',false,null)" 
+																		id="title-${todo.uuid}" onblur="renameTodo('${todo.uuid}')" spellcheck="false">${todo.name}</h4>
 															</div>
 														</div>`;
 
@@ -80,7 +88,10 @@ const displayTodo = (todo) => {
 			notes.innerHTML = `<label for="notes-${todo.uuid} style="margin-bottom: 0;">Notes</label>
 													<textarea id="notes-${todo.uuid}" class="msg__textarea" onblur="addTodoNotes('${todo.uuid}')">${todo.notes}</textarea>`;
 
-  mainContainer.appendChild(trashContainer);
+	row.appendChild(trashContainer);
+	row.prepend(dragulaMover);	
+
+  mainContainer.appendChild(row);
 	mainContainer.appendChild(todoTitle);
 	mainContainer.appendChild(caret);
 

@@ -69,15 +69,18 @@ function toggleDescription(id) {
 function toggleDoneButton(id) {
   let btn = $(`#done-button-${id}`);
   let todo = $(`#dragula-${id}`);
+  let title = $(`#title-${id}`);
 
   if(btn.prop("checked") == true){
     btn.prop("checked") == true;
     window.projects[window.currentProject].toggleDone(1, id);
     todo.css("opacity", "0.7");
+    title.css("text-decoration", "line-through");
   } else {
     btn.prop("checked") == false;
     window.projects[window.currentProject].toggleDone(0, id);
     todo.css("opacity", "1");
+    title.css("text-decoration", "none");
   }
 }
 

@@ -82,7 +82,10 @@ let currentProject = JSON.parse(localStorage.getItem("currentProject"));
   } 
 
   var drake = dragula({
-    revertOnSpill: true
+    revertOnSpill: true,
+    moves: function (el, container, handle) {
+      return handle.classList.contains('dragula-handler');
+    }
   });
 
   drake.containers.push(document.querySelector("#tasks-container"));
