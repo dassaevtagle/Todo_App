@@ -169,7 +169,7 @@ $('#add-project-button').on('click', () => {
   localStorage.setItem('projects', JSON.stringify(window.projects));
 });
 
-$(`#scroll-top-button`).on("mousedown touchstart",() => {
+$(`#scroll-top-button`).on("touchstart",() => {
   (function smoothSrcroll() {
       $('html, body').stop().animate({
           scrollTop: Math.max($('html').scrollTop(), $('body').scrollTop()) - 350
@@ -177,13 +177,13 @@ $(`#scroll-top-button`).on("mousedown touchstart",() => {
           window.timeout = setTimeout(smoothSrcroll(), 0);
       });
   })();
-}).on('mouseup touchend', function() {
+}).on('touchend', function() {
   $('html, body').stop();
   clearTimeout(window.timeout);
 });
 
 
-$(`#scroll-down-button`).on("mousedown touchstart",() => {
+$(`#scroll-down-button`).on("touchstart",() => {
   (function smoothSrcroll() {
       $('html, body').stop().animate({
           scrollTop: Math.max($('html').scrollTop(), $('body').scrollTop()) + 350
@@ -191,7 +191,7 @@ $(`#scroll-down-button`).on("mousedown touchstart",() => {
           window.timeout = setTimeout(smoothSrcroll(), 0);
       });
   })();
-}).on('mouseup touchend', function() {
+}).on('touchend', function() {
   $('html, body').stop();
   clearTimeout(window.timeout);
 });
