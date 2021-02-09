@@ -30,6 +30,7 @@ function deleteProject(id) {
   projectContainer.remove();
   $(`#tasks-container`).empty();
   window.removeProject(id);
+  $(".project-header").empty();
 }
 
 function toggleDescription(id) {
