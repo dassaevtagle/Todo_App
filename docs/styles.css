@@ -50,9 +50,10 @@ body{
 
 @media (max-width: 991px) { 
 	#tasks-container{
-		overflow: hidden;
+		overflow: auto;
 		height: auto;
 		width: auto;
+		max-height: 80vh;
 	}
 }
 
@@ -63,6 +64,7 @@ body{
 		-ms-overflow-x: hidden;
 		height: 84.5vh;
 		width: auto;
+		max-height: 90vh;
 	}
 }
 
