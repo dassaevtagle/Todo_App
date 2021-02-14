@@ -8,6 +8,7 @@ import {
   todo,
   displayTodo
 } from './modules/todo';
+import './styles.css'
 
 let projects = JSON.parse(localStorage.getItem("projects"));
 let todosOrder;
